@@ -1,0 +1,39 @@
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\App.g.i.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\App.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\HubPage.g.i.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\HubPage.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\XamlTypeInfo.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\App.xaml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\HubPage.xaml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\App.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\HubPage.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\XamlSaveStateFile.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Html\js\hammer.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Html\js\three.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Model\frog.stl
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Html\modelviewer.html
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Html\js\jquery-2.1.1.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Model\test.stl
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Html\js\orbitcontrols.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\App.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\HubPage.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Bananna Metro Host.xr.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Bananna Metro Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Bananna Metro Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\resources.pri
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\AppxManifest.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Bananna Metro Host.build.appxrecipe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\Bananna Metro Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\Bananna Metro Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\priconfig.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\priconfig.xml.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\layout.resfiles
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\layout.resfiles.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\resources.resfiles
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\resources.resfiles.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\pri.resfiles
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\pri.resfiles.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\qualifiers.txt
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\qualifiers.txt.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\ProjectArchitectures.txt

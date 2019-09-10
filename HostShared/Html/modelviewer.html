@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>THREE.js model viewer</title>
+</head>
+<body style="margin: 0px; padding: 0px; overflow: hidden; touch-action: none; -ms-touch-action: none; background-color: black">
+    <script src="js/three.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/orbitcontrols.js"></script>
+    <script>
+        /// <reference path="three.min.js" />
+        /// <reference path="jquery-2.1.1.min.js" />
+        /// <reference path="orbitcontrols.js" />
+        window.external.Log("Yes yes");
+        //Determines of the orbit window should be shown
+        var orbitWindow = false;
+
+        //Global variables
+        var renderer, scene, camera, camera2, rotObj, ring1, ring2, ringGeometry, cameraPrism, bgBox;
+
+        //Init functions
+
+        function init() {
+            scene = new THREE.Scene();
+
+            camera2 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.autoClear = true;
+
+            // Create an event listener that resizes the renderer with the browser window.
+            window.addEventListener('resize', function () {
+                var WIDTH = window.innerWidth,
+                    HEIGHT = window.innerHeight;
+                renderer.setSize(WIDTH, HEIGHT);
+                camera2.aspect = WIDTH / HEIGHT;
+                camera2.updateProjectionMatrix();
+            });
+
+            document.body.appendChild(renderer.domElement);
+
+            // Create a light, set its position, and add it to the scene.
+            var light = new THREE.PointLight(0xffffff);
+            light.position.set(-100, 100, 0);
+            scene.add(light);
+
+            camera.position.set(-300, -300, 300);
+            camera.up.set(0, 0, 1);
+            camera.lookAt(new THREE.Vector3(boxX / 2, boxY / 2, 0));
+
+            //Make the home circle
+            var material = new THREE.MeshBasicMaterial({
+                color: 0x0000ff,
+                side: THREE.DoubleSide
+            });
+
+            var radius = 3;
+            var segments = 16;
+
+            var circleGeometry = new THREE.CircleGeometry(radius, segments);
+            var circle = new THREE.Mesh(circleGeometry, material);
+            scene.add(circle);
+
+            //Make the grids
+            makeGrids();
+
+            initCameraAssembly();
+
+            render();
+
+            //Using JS file importing does not work because it wants to load the entire file at once
+        }
+
+        //Render function
+        var render = function () {
+            requestAnimationFrame(render);
+
+            //Draw the main view
+            renderer.render(scene, camera2);
+
+            if (orbitWindow)
+            {
+                //Draw the small orbit view
+                var smallSize = window.innerWidth / 5;
+
+                ring1.visible = true;
+                ring2.visible = true;
+                cameraPrism.visible = true;
+
+                renderer.setViewport(window.innerWidth - smallSize, window.innerHeight - smallSize, smallSize, smallSize);
+                renderer.setScissor(window.innerWidth - smallSize, window.innerHeight - smallSize, smallSize, smallSize);
+                renderer.setClearColor("lightgray", 1);
+                renderer.enableScissorTest(true);
+
+                renderer.render(scene, camera);
+
+                renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
+                renderer.setScissor(0, 0, window.innerWidth, window.innerHeight);
+                renderer.setClearColor("transparent", 0);
+
+                ring1.visible = false;
+                ring2.visible = false;
+                cameraPrism.visible = false;                
+            }
+        };
+
+        //Get the viewer going
+        init();
+
+        //This function is used to request all the triangles in a model from the 'server'
+        function getTrigs() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'text',
+                url: 'readTrigs',
+                cache: false,
+                success: function (data) {
+                    if (data != 'done') {
+                        addTriangles(data.split(";"));
+                        getTrigs();
+                        updateModel("rand");                        
+                    }
+                }
+                //dalk finished gebruik...
+            });
+        };
+
+        var lineMaterial = new THREE.LineBasicMaterial({ color: 0x000fff });
+
+        var toolpath = new THREE.Object3D();
+
+        function getSegment() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'text',
+                url: 'readLayer',
+                cache: false,
+                success: function (data) {
+                    if (data != 'done') {
+                        addLines(data.split(";"));
+                        getSegment();
+                    }
+                }
+            });
+        };
+
+        //This function starts the loading process
+        function startImport() {
+            curGeometry = new THREE.Geometry();
+            curIndex = 0;
+            getTrigs();
+        }
+
+        function startToolpathImport() {
+            scene.remove(toolpath);
+            
+            while (toolpath.children.length > 0) {
+                toolpath.remove(toolpath.children[0]);
+            }
+
+            delete toolpath;
+            toolpath = new THREE.Object3D();
+            curGeometry = new THREE.Geometry();
+            scene.add(toolpath);
+            getSegment();
+        }
+
+        //Triangle mesh creation functions
+        
+        // Create a list to keep all the models in
+        var models = new Array();
+
+        //The geometry that is being constrcuted as well as the current index
+        var curGeometry, curIndex;
+
+        var curLines = new Array();
+        var curHeight = 100;
+
+        //Add all the triangles contained in the ; seperated string
+        function addTriangles(points) {
+            //The last element specifies the amount of contained triangles
+            for (var i = 0; i < (points[points.length - 1] * 9); i += 9)
+            {
+                curGeometry.vertices.push(new THREE.Vector3(points[i], points[i + 1], points[i + 2]));
+                curGeometry.vertices.push(new THREE.Vector3(points[i + 3], points[i + 4], points[i + 5]));
+                curGeometry.vertices.push(new THREE.Vector3(points[i + 6], points[i + 7], points[i + 8]));
+
+                curGeometry.faces.push(new THREE.Face3(curIndex, curIndex + 1, curIndex + 2));
+
+                curIndex += 3;
+            }
+        }
+
+        function createCylinder(vstart, vend) {
+            var material = new THREE.MeshNormalMaterial();
+            var direction = new THREE.Vector3().subVectors(vend, vstart);
+            var orientation = new THREE.Matrix4();
+            orientation.lookAt(vstart, vend, THREE.Object3D.DefaultUp);
+            orientation.multiply(new THREE.Matrix4(1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1));
+            var edgeGeometry = new THREE.CylinderGeometry(0.25, 0.25, direction.length(), 6, 1);           
+            var mat = new THREE.Matrix4();
+            mat.makeTranslation(vstart.x / 2 + vend.x / 2, vstart.y / 2 + vend.y / 2, vstart.z);
+            edgeGeometry.applyMatrix(orientation);
+            edgeGeometry.applyMatrix(mat);
+            return edgeGeometry;
+        }
+
+        function createRectangle(vstart, vend) {
+            var rectShape = new THREE.Shape();
+            var dx = vend.x - vstart.x;
+            var dy = vend.y - vstart.y;
+            var length = Math.sqrt(dx * dx + dy * dy);
+            var width = 0.5;
+            rectShape.moveTo(-width / 2, -length / 2);
+            rectShape.lineTo( width / 2, -length /2);
+            rectShape.lineTo( width / 2, length / 2);
+            rectShape.lineTo(-width / 2, length / 2);
+            rectShape.lineTo(-width / 2, -length / 2);
+
+            var direction = new THREE.Vector3().subVectors(vend, vstart);
+            var orientation = new THREE.Matrix4();
+            orientation.lookAt(vstart, vend, THREE.Object3D.DefaultUp);
+            orientation.multiply(new THREE.Matrix4(1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1));
+            var edgeGeometry = new THREE.ShapeGeometry(rectShape);
+            var mat = new THREE.Matrix4();
+            var upright = new THREE.Matrix4();
+            upright.makeRotationY(Math.PI / 2);
+            mat.makeTranslation(vstart.x / 2 + vend.x / 2, vstart.y / 2 + vend.y / 2, vstart.z);
+            edgeGeometry.applyMatrix(upright);
+            edgeGeometry.applyMatrix(orientation);
+            edgeGeometry.applyMatrix(mat);
+            return edgeGeometry;
+        }
+
+        function addLines(points) {
+            //var material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+            curGeometry = new THREE.Geometry();
+            //var cylinders = new Array();
+
+            for (var i = 0; i < points.length - 1; i += 5)
+            {
+                var vstart = new THREE.Vector3(points[i], points[i + 1], points[i + 4]);
+                var vend = new THREE.Vector3(points[i + 2], points[i + 3], points[i + 4]);
+
+                //curGeometry.vertices.push(vstart);
+                //curGeometry.vertices.push(vend);
+
+                //var newCyl = createCylinder(vstart, vend);
+                var newCyl = createRectangle(vstart, vend);
+                THREE.GeometryUtils.merge(curGeometry, newCyl);
+            }
+
+            var mat = new THREE.MeshNormalMaterial();
+            mat.side = THREE.DoubleSide;
+            var mesh = new THREE.Mesh(curGeometry, mat);
+            toolpath.add(mesh);
+
+            //var line = new THREE.Line(curGeometry, lineMaterial, THREE.LinePieces);
+            //toolpath.add(line);
+        }
+
+        //This method removes the old model and replaces it with the new one
+        function updateModel(name) {
+            var first = true;
+
+            if (models[name] != undefined) {
+                scene.remove(models[name]);
+                delete models[name];
+                first = false;
+            }
+
+            var cloneGeo = curGeometry.clone();
+            cloneGeo.computeFaceNormals();            
+
+            var model = new THREE.Mesh(cloneGeo, new THREE.MeshNormalMaterial());
+
+            cloneGeo.computeBoundingBox();
+
+            var min = cloneGeo.boundingBox.min;
+            var max = cloneGeo.boundingBox.max;
+            var avg = new THREE.Vector3();
+            avg.add(min.divideScalar(2), max.divideScalar(2));
+
+            model.translateX(-avg.x + 50);
+            model.translateY(-avg.y + 100);
+            model.translateZ(-min.z);
+
+            scene.add(model);
+
+            models[name] = model;       
+        }
+
+        //This function deletes the model at the specified index
+        function deleteModel(name) {
+            scene.remove(models[name]);
+            delete models[name]; //TODO: might leak memory...
+        }
+
+        //Intialize the touch and mouse controls
+        initOrbitControls(renderer.domElement, document);
+    </script>
+</body>
+</html>

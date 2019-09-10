@@ -1,0 +1,119 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="Bananna_Metro_Host.HubPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Bananna_Metro_Host"
+    xmlns:data="using:Bananna_Metro_Host.Data"
+    xmlns:common="using:Bananna_Metro_Host.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--
+    This grid acts as a root panel for the page.
+  -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Hub x:ConnectionId='1'                                            >
+            <Hub.Header>
+                <!-- Back button and page title -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        Margin="-1,-1,39,0" 
+                        VerticalAlignment="Top"
+                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+                    <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        VerticalAlignment="Top" IsHitTestVisible="false" TextWrapping="NoWrap" />
+                </Grid>
+            </Hub.Header>
+            <HubSection Width="780" Margin="0,0,80,0">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/MediumGray.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+            </HubSection>
+            <HubSection x:Uid="ModelHeader" Header="Model">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid x:ConnectionId='2' x:Name="modelViewer_Grid" Grid.Row="0" Width="400" Height="400" Margin="5"                                                                      />
+                            <!--WebView Grid.Row="0" x:Name="modelWebView" Width="400" Height="400" Margin="5" Loaded="modelWebView_Loaded" DefaultBackgroundColor="Yellow"/-->
+                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Disabled" VerticalAlignment="Stretch">
+                                <StackPanel>
+                                    <CheckBox Content="Model1" HorizontalAlignment="Stretch" BorderBrush="White" BorderThickness="2" Margin="5"/>
+                                    <CheckBox Content="Model2" HorizontalAlignment="Stretch" BorderBrush="White" BorderThickness="2" Margin="5"/>
+                                    <CheckBox Content="Model3" HorizontalAlignment="Stretch" BorderBrush="White" BorderThickness="2" Margin="5"/>
+                                    <CheckBox Content="Model4" HorizontalAlignment="Stretch" BorderBrush="White" BorderThickness="2" Margin="5"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                        
+                        <StackPanel Grid.Column="0">
+                            
+                        </StackPanel>
+                        
+                        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <Button Content="Remove" HorizontalAlignment="Stretch"/>
+                                <Button Content="Rotate" HorizontalAlignment="Stretch"/>
+                                <Button Content="Position" HorizontalAlignment="Stretch"/>
+                                <Button Content="Scale" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>                    
+                </DataTemplate>
+            </HubSection>
+            <HubSection x:Uid="SliceHeader" Header="Slice">
+                <DataTemplate>
+                    <Grid>
+
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection x:Uid="GCodeHeader" Header="GCode">
+                <DataTemplate>
+                    <Grid>
+
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection x:Uid="PrintHeader" Header="Print">
+                <DataTemplate>
+                    <Grid>
+
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection x:Uid="SettingsHeader" Header="Settings">
+                <DataTemplate>
+                    <Grid>
+
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+</Page>
+

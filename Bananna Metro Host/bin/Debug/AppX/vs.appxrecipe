@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>GERHARD-YOGA</Machine>
+    <WindowsUser>Gerhard</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>f2d2ef55-e28f-4070-9e79-40d77d00ca26</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\obj\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>303380C1B27F31B3467808692B023CDC468C78D88D84458C4D2ABBA16EE8C068</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>f2d2ef55-e28f-4070-9e79-40d77d00ca26_1.0.0.0_neutral__b0ckz6vx689s4</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>f2d2ef55-e28f-4070-9e79-40d77d00ca26_b0ckz6vx689s4!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>f2d2ef55-e28f-4070-9e79-40d77d00ca26</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Gerhard</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-10-18T09:30:31.960</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Bananna Metro Host.exe">
+      <PackagePath>Bananna Metro Host.exe</PackagePath>
+      <Modified>2014-10-30T17:17:37.244</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\DataModel\SampleData.json">
+      <PackagePath>DataModel\SampleData.json</PackagePath>
+      <Modified>2014-07-06T12:15:19.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\Logo.scale-100.png">
+      <PackagePath>Assets\Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\SmallLogo.scale-100.png">
+      <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\LightGray.png">
+      <PackagePath>Assets\LightGray.png</PackagePath>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\MediumGray.png">
+      <PackagePath>Assets\MediumGray.png</PackagePath>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\Assets\DarkGray.png">
+      <PackagePath>Assets\DarkGray.png</PackagePath>
+      <Modified>2013-07-23T04:01:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\ding.html">
+      <PackagePath>Html\ding.html</PackagePath>
+      <Modified>2014-07-11T13:59:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\test.html">
+      <PackagePath>Html\test.html</PackagePath>
+      <Modified>2014-07-12T09:30:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\modelviewer.html">
+      <PackagePath>Html\modelviewer.html</PackagePath>
+      <Modified>2014-10-18T16:56:16.146</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\js\hammer.min.js">
+      <PackagePath>Html\js\hammer.min.js</PackagePath>
+      <Modified>2014-07-01T16:24:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\js\three.min.js">
+      <PackagePath>Html\js\three.min.js</PackagePath>
+      <Modified>2014-10-18T15:15:47.650</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\js\jquery-2.1.1.min.js">
+      <PackagePath>Html\js\jquery-2.1.1.min.js</PackagePath>
+      <Modified>2014-10-08T20:55:59.027</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Html\js\orbitcontrols.js">
+      <PackagePath>Html\js\orbitcontrols.js</PackagePath>
+      <Modified>2014-10-18T16:57:30.189</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Model\frog.stl">
+      <PackagePath>Model\frog.stl</PackagePath>
+      <Modified>2013-11-03T09:31:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\HostShared\Model\test.stl">
+      <PackagePath>Model\test.stl</PackagePath>
+      <Modified>2013-12-17T10:02:59.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2014-10-18T09:29:54.862</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\HubPage.xbf">
+      <PackagePath>HubPage.xbf</PackagePath>
+      <Modified>2014-10-18T09:29:54.862</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\Bananna Metro Host.xr.xml">
+      <PackagePath>Bananna Metro Host.xr.xml</PackagePath>
+      <Modified>2014-07-17T16:47:15.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Metro Host\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2014-10-18T09:30:31.870</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

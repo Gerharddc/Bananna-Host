@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+</head>
+<body style="margin: 0; overflow: hidden;  touch-action: none; -ms-touch-action: none;">
+    <div id="container"></div>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/RotateControls.js"></script>
+    <script>
+        /// <reference path="three.min.js" />
+        /// <reference path="hammer.min.js" />
+        /// <reference path="RotateControls.js" />
+
+        //Create a container for all the objects that will be rotated
+        var rotSection = new THREE.Object3D();
+
+        var boxX = 100;
+        var boxY = 200;
+        var boxZ = 100;
+
+        function makeGrid(startX, startY, startZ, xLength, yLength, zLength, interval, lineColor) {
+            var material = new THREE.LineBasicMaterial({
+                color: lineColor
+            });
+
+            var geometry = new THREE.Geometry();
+
+            if (zLength == 0)
+            {
+                //XY
+                var countX = Math.round(xLength / interval);
+                var countY = Math.round(yLength / interval);
+
+                for (var i = 0; i < countX; i++)
+                {
+                    var lineX = startX + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(lineX, 0, startZ));
+                    geometry.vertices.push(new THREE.Vector3(lineX, yLength, startZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(xLength, 0, startZ));
+                geometry.vertices.push(new THREE.Vector3(xLength, yLength, startZ));
+
+                for (var i = 0; i < countY; i++) {
+                    var lineY = startY + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(0, lineY, startZ));
+                    geometry.vertices.push(new THREE.Vector3(xLength, lineY, startZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(0, yLength, startZ));
+                geometry.vertices.push(new THREE.Vector3(xLength, yLength, startZ));
+            }
+            else if (yLength == 0)
+            {
+                //XZ
+                var countX = Math.round(xLength / interval);
+                var countZ = Math.round(zLength / interval);
+
+                for (var i = 0; i < countX; i++) {
+                    var lineX = startX + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(lineX, startY, 0));
+                    geometry.vertices.push(new THREE.Vector3(lineX, startY, zLength));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(xLength, startY, 0));
+                geometry.vertices.push(new THREE.Vector3(xLength, startY, zLength));
+
+                for (var i = 0; i < countZ; i++) {
+                    var lineZ = startZ + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(0, startY, lineZ));
+                    geometry.vertices.push(new THREE.Vector3(xLength, startY, lineZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(0, startY, zLength));
+                geometry.vertices.push(new THREE.Vector3(xLength, startY, zLength));
+            }
+            else
+            {
+                //YZ
+                var countY = Math.round(yLength / interval);
+                var countZ = Math.round(zLength / interval);
+
+                for (var i = 0; i < countY; i++) {
+                    var lineY = startY + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(startX, lineY, 0));
+                    geometry.vertices.push(new THREE.Vector3(startX, lineY, zLength));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(startX, yLength, 0));
+                geometry.vertices.push(new THREE.Vector3(startX, yLength, zLength));
+
+                for (var i = 0; i < countZ; i++) {
+                    var lineZ = startZ + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(startX, 0, lineZ));
+                    geometry.vertices.push(new THREE.Vector3(startX, yLength, lineZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(startX, 0, zLength));
+                geometry.vertices.push(new THREE.Vector3(startX, yLength, zLength));
+            }
+
+            return new THREE.Line(geometry, material, THREE.LinePieces);
+        }
+
+        function makeGrids()
+        {
+            gridXY = makeGrid(0, 0, 0, boxX, boxY, 0, 10, 0x000066);
+            rotSection.add(gridXY);
+
+            gridXZ = makeGrid(0, boxY, 0, boxX, 0, boxZ, 10, 0x006600);
+            rotSection.add(gridXZ);
+
+            gridYZ = makeGrid(boxX, 0, 0, 0, boxY, boxZ, 10, 0x660000);
+            rotSection.add(gridYZ);
+        }
+
+        // Set up the scene, camera, and renderer as global variables.
+        var scene, camera, renderer;
+
+        init();
+        animate();
+
+        var gridXZ, gridXY, gridYZ;
+
+        var rotSection, controls;
+        
+        // Sets up the scene.
+        function init() {
+            // Create the scene and set the scene size.
+            scene = new THREE.Scene();
+
+            var WIDTH = window.innerWidth,
+                HEIGHT = window.innerHeight;
+
+            // Create a renderer and add it to the DOM.
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(WIDTH, HEIGHT);
+            document.body.appendChild(renderer.domElement);
+
+            // Create a camera, zoom it out from the model a bit, and add it to the scene.
+            camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
+            //camera = new THREE.OrthographicCamera(WIDTH / -2, WIDTH / 2, HEIGHT / 2, HEIGHT / -2, 1, 2000);
+            camera.position.set(-100, -200, 200);
+            camera.up = new THREE.Vector3(0, 0, 1);
+            camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+            scene.add(camera);
+
+            rotSection.applyMatrix(new THREE.Matrix4().makeTranslation(-50, -100, 0));
+
+            scene.add(rotSection);
+
+            // Create an event listener that resizes the renderer with the browser window.
+            window.addEventListener('resize', function () {
+                var WIDTH = window.innerWidth,
+                    HEIGHT = window.innerHeight;
+                renderer.setSize(WIDTH, HEIGHT);
+                camera.aspect = WIDTH / HEIGHT;
+                camera.updateProjectionMatrix();
+            });
+
+            // Create a light, set its position, and add it to the scene.
+            var light = new THREE.PointLight(0xffffff);
+            light.position.set(-100, 100, 0);
+            scene.add(light);
+
+            //Add grid
+            makeGrids();
+
+            var material = new THREE.MeshBasicMaterial({
+                color: 0x0000ff
+            });
+
+            var radius = 5;
+            var segments = 32;
+
+            var circleGeometry = new THREE.CircleGeometry(radius, segments);
+            var circle = new THREE.Mesh(circleGeometry, material);
+            scene.add(circle);
+
+            /*for (var i = 0; i < 0; i++) {
+                // cylinder
+                // API: THREE.CylinderGeometry(bottomRadius, topRadius, height, segmentsRadius, segmentsHeight)
+
+                var bottomRadius = 50 + Math.floor((Math.random() * 50) + 1);
+                var topRadius = 50 + Math.floor((Math.random() * 50) + 1);
+                var height = 200 + Math.floor((Math.random() * 200) + 1);
+                var segmentsRadius = 25 + Math.floor((Math.random() * 25) + 1);
+                var segmentsHeight = 25 + Math.floor((Math.random() * 25) + 1);
+
+                var newcyl = new THREE.Mesh(new THREE.CylinderGeometry(bottomRadius, topRadius, height, segmentsRadius, segmentsHeight, false), new THREE.MeshNormalMaterial());
+                newcyl.overdraw = true;
+                scene.add(newcyl);
+                newcyl.translateX(Math.floor((Math.random() * 500) - 250 + 1));
+            }*/
+            
+            // Add OrbitControls so that we can pan around with the mouse.
+            //controls = new THREE.OrbitControls(camera, renderer.domElement, new THREE.Vector3(50, 100, 0));
+            controls = new THREE.OrbitControls(camera, rotSection, renderer.domElement, new THREE.Vector3(0, 0, 0));
+        }
+
+        // Renders the scene and updates the render as needed.
+        function animate() {
+
+            // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+            requestAnimationFrame(animate);
+
+            // Render the scene.
+            renderer.render(scene, camera);
+            controls.update();
+            //camera.scale = 1; 
+            //rotSection.applyMatrix(new THREE.Matrix4().makeRotationX(0.01));
+            //rotSection.applyMatrix(new THREE.Matrix4().makeRotationY(0.01));
+            //rotSection.applyMatrix(new THREE.Matrix4().makeRotationZ(0.01));        
+        }
+
+        // Create a list to keep all the models in
+        var models = new Array();
+
+        var curGeometry, curIndex;
+
+        //This function makes ready for the definition of a new model
+        function newModel()
+        {
+            curGeometry = new THREE.Geometry();
+            curIndex = 0;
+        }
+
+        //This function adds a new triangle to the current geometry
+        function addTriangle(v1x, v1y, v1z, v2x, v2y, v2z, v3x, v3y, v3z) {
+            curGeometry.vertices.push(new THREE.Vector3(v1x, v1y, v1z));
+            curGeometry.vertices.push(new THREE.Vector3(v2x, v2y, v2z));
+            curGeometry.vertices.push(new THREE.Vector3(v3x, v3y, v3z));
+
+            curGeometry.faces.push(new THREE.Face3(curIndex, curIndex + 1, curIndex + 2));
+
+            curIndex += 3;
+        }
+
+        function vect3Avg(a, b)
+        {
+            return new THREE.Vector3(a.x / 2 + b.x / 2, (a.y + b.y) / 2, (a.z + b.z) / 2);
+        }
+
+        //This method add the model currently being worked upon to the list and to the scene
+        function addModel(name)
+        {
+            curGeometry.computeFaceNormals();
+            curGeometry.computeBoundingBox();
+
+            var min = curGeometry.boundingBox.min;
+            var max = curGeometry.boundingBox.max;
+            var avg = new THREE.Vector3();//vect3Avg(min, max);//new THREE.Vector3();
+
+            avg.add(min.divideScalar(2), max.divideScalar(2));
+            //avg.divideScalar(2);
+
+            //sayVect3(min);
+            //sayVect3(max);
+            //sayVect3(avg);
+
+            var model = new THREE.Mesh(curGeometry, new THREE.MeshNormalMaterial());
+            
+            model.translateX(-avg.x + 50);
+            model.translateY(-avg.y + 100);
+            model.translateZ(-min.z);
+
+            models[name] = model;
+            rotSection.add(model);
+
+            /*var model = models[name];
+            var posLocal = model.position;
+            alert("x: " + posLocal.x + " y: " + posLocal.y + " z: " + posLocal.z);
+            var posWorld = model.localToWorld(posLocal);
+            alert("x: " + posWorld.x + " y: " + posWorld.y + " z: " + posWorld.z);*/
+        }
+
+        //This model deletes the model at the specified index
+        function deleteModel(index)
+        {
+            scene.remove(models[name]);
+            delete models[name]; //TODO: might leak memory...
+        }
+
+
+    </script>
+</body>
+</html>

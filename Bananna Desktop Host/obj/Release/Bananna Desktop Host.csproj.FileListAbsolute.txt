@@ -1,0 +1,20 @@
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Bananna Desktop Host.exe.config
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Html\js\hammer.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Html\js\OrbitControls.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Html\js\three.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Html\stlviewer.html
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Bananna Desktop Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\Bananna Desktop Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\RegistryFixer.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Release\RegistryFixer.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host.csprojResolveAssemblyReference.cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\MainWindow.baml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\MainWindow.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\App.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host_Content.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host_MarkupCompile.cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host.g.resources
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna_Desktop_Host.Properties.Resources.resources
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host.csproj.GenerateResource.Cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Release\Bananna Desktop Host.pdb

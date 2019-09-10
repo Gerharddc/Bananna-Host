@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b35e2a4c-0f00-4d24-b5d5-acf9a85a54ec</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PolyChopperShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)clipper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\MoveSegments.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\IndexedPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\InfillGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\Island.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\LayerComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\LayerSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\LineSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\LoopingList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Containers\Triangle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DTPWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolpathGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GcodeWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InfillGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LayerAnaliser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LayerSlicer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MathUtils\MathHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MathUtils\Matrix.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MathUtils\Quaternion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MathUtils\Vector2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MathUtils\Vector3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelImporter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PolyChopper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PolygonOptimiser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaftGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsImporter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SkirtCreator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValueEstimator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Values.cs" />
+  </ItemGroup>
+</Project>

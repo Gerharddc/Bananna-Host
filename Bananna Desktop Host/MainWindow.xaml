@@ -1,0 +1,59 @@
+﻿<Window x:Class="Bananna_Desktop_Host.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bananna Desktop Host">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Save" HorizontalAlignment="Left" Width="139.2"/>
+                <MenuItem Header="Open" HorizontalAlignment="Left" Width="139.2"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" Background="Black" Loaded="Grid_Loaded" Unloaded="Grid_Unloaded"/>
+        
+        <GridSplitter Grid.RowSpan="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="Green" ShowsPreview="True" Width="5" Panel.ZIndex="100"/>
+        
+        <TabControl Grid.Column="1" Grid.RowSpan="3">
+            <TabItem Header="Stl">
+                
+            </TabItem>
+            <TabItem Header="Slicer">
+                <Grid Background="#FFE5E5E5">
+                    <StackPanel>
+                        <Label Content="Input" HorizontalAlignment="Center"/>                                                
+                        <TextBox x:Name="inputTextbox" HorizontalAlignment="Stretch" Height="40" TextWrapping="Wrap" Text="TextBox"/>
+                        <Button x:Name="inBtn" Content="Button" HorizontalAlignment="Stretch" Click="inBtn_Click"/>
+                        <Label Content="Output" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="outputTextbox" HorizontalAlignment="Stretch" Height="40" TextWrapping="Wrap" Text="TextBox"/>
+                        <Button x:Name="outBtn" Content="Button" HorizontalAlignment="Stretch" Click="outBtn_Click"/>
+                        <Label Content="Config" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="configTextbox" HorizontalAlignment="Stretch" Height="40" TextWrapping="Wrap" Text="TextBox"/>                                               
+                        <Button x:Name="confBtn" Content="Button" HorizontalAlignment="Stretch" Click="confBtn_Click"/>
+                        <Label x:Name="logLabel" Content="Label" HorizontalAlignment="Center" />
+                        <Button x:Name="sliceBtn" Content="Slice" HorizontalAlignment="Stretch" Click="sliceBtn_Click"/>
+                    </StackPanel>                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="GCode">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        
+        <StatusBar Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="15"/>
+    </Grid>
+</Window>

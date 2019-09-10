@@ -1,0 +1,42 @@
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Html\js\hammer.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Html\js\three.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Model\frog.stl
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Html\modelviewer.html
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Html\js\jquery-2.1.1.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Model\test.stl
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Html\js\orbitcontrols.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\App.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\PivotPage.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Bananna Phone Host.xr.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Bananna Phone Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Bananna Phone Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\resources.pri
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\AppxManifest.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Bananna Phone Host.build.appxrecipe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Microsoft.Xaml.Interactions.dll
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\bin\Debug\Microsoft.Xaml.Interactivity.dll
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\App.g.i.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\App.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\PivotPage.g.i.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\PivotPage.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\XamlTypeInfo.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\App.xaml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\PivotPage.xaml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\App.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\PivotPage.xbf
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\XamlSaveStateFile.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\Bananna Phone Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\Bananna Phone Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\Bananna Phone Host.csproj.GenerateResource.Cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\priconfig.xml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\priconfig.xml.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\layout.resfiles
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\layout.resfiles.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\resources.resfiles
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\resources.resfiles.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\pri.resfiles
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\pri.resfiles.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\qualifiers.txt
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\qualifiers.txt.intermediate
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Phone Host\obj\Debug\ProjectArchitectures.txt

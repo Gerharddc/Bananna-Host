@@ -1,0 +1,14 @@
+﻿<Application
+    x:Class="Bananna_Metro_Host.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Bananna_Metro_Host"
+    xmlns:localData="using:Bananna_Metro_Host.Data">
+
+    <Application.Resources>
+        <!-- Application-specific resources -->
+
+        <x:String x:Key="AppName">Bananna_Metro_Host</x:String>
+
+    </Application.Resources>
+</Application>

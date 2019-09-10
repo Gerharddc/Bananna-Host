@@ -1,0 +1,19 @@
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Bananna Desktop Host.exe.config
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Bananna Desktop Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Bananna Desktop Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host.csprojResolveAssemblyReference.cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\MainWindow.baml
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\MainWindow.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\App.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host_MarkupCompile.cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host.g.resources
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna_Desktop_Host.Properties.Resources.resources
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host.csproj.GenerateResource.Cache
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host.exe
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host.pdb
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\obj\Debug\Bananna Desktop Host_Content.g.cs
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Html\js\hammer.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Html\js\OrbitControls.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Html\js\three.min.js
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Html\stlviewer.html
+C:\Users\Gerhard\SkyDrive\Bananna3D\Host Software\RepRap Phone Host\Bananna Desktop Host\bin\Debug\Html\test.html

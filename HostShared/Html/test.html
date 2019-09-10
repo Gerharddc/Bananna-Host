@@ -1,0 +1,559 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>My first Three.js app</title>
+</head>
+<body style="margin: 0; padding: 0; overflow: hidden;  touch-action: none; -ms-touch-action: none;">
+    <div id="leftBlock" style="background-color: lightgray; width: 50%; height: 100%; float: left;">
+        Camera position
+    </div>
+
+    <div id="rightBlock" style="width: 50%; height: 100%; float: left;">
+        View
+    </div>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script>
+        /// <reference path="three.min.js" />
+        /// <reference path="hammer.min.js" />
+
+        //Global variables
+        var renderer, scene, camera, camera2, rotObj, ring1, ring2, ringGeometry, cameraPrism;
+
+        //The distance to pan depends on the zoom level, we therefore need to store the original camDistance and original panDistance
+        var orgCamDistance = 300;
+        var orgPanDistance = 1;
+
+        //We also store the currrent camDistance as a global
+        var camDistance = orgCamDistance;
+
+        //Grid creation functions
+
+        var boxX = 100;
+        var boxY = 200;
+        var boxZ = 100;
+
+        function makeGrid(startX, startY, startZ, xLength, yLength, zLength, interval, lineColor) {
+            var material = new THREE.LineBasicMaterial({
+                color: lineColor
+            });
+
+            var geometry = new THREE.Geometry();
+
+            if (zLength == 0) {
+                //XY
+                var countX = Math.round(xLength / interval);
+                var countY = Math.round(yLength / interval);
+
+                for (var i = 0; i < countX; i++) {
+                    var lineX = startX + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(lineX, 0, startZ));
+                    geometry.vertices.push(new THREE.Vector3(lineX, yLength, startZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(xLength, 0, startZ));
+                geometry.vertices.push(new THREE.Vector3(xLength, yLength, startZ));
+
+                for (var i = 0; i < countY; i++) {
+                    var lineY = startY + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(0, lineY, startZ));
+                    geometry.vertices.push(new THREE.Vector3(xLength, lineY, startZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(0, yLength, startZ));
+                geometry.vertices.push(new THREE.Vector3(xLength, yLength, startZ));
+            }
+            else if (yLength == 0) {
+                //XZ
+                var countX = Math.round(xLength / interval);
+                var countZ = Math.round(zLength / interval);
+
+                for (var i = 0; i < countX; i++) {
+                    var lineX = startX + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(lineX, startY, 0));
+                    geometry.vertices.push(new THREE.Vector3(lineX, startY, zLength));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(xLength, startY, 0));
+                geometry.vertices.push(new THREE.Vector3(xLength, startY, zLength));
+
+                for (var i = 0; i < countZ; i++) {
+                    var lineZ = startZ + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(0, startY, lineZ));
+                    geometry.vertices.push(new THREE.Vector3(xLength, startY, lineZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(0, startY, zLength));
+                geometry.vertices.push(new THREE.Vector3(xLength, startY, zLength));
+            }
+            else {
+                //YZ
+                var countY = Math.round(yLength / interval);
+                var countZ = Math.round(zLength / interval);
+
+                for (var i = 0; i < countY; i++) {
+                    var lineY = startY + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(startX, lineY, 0));
+                    geometry.vertices.push(new THREE.Vector3(startX, lineY, zLength));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(startX, yLength, 0));
+                geometry.vertices.push(new THREE.Vector3(startX, yLength, zLength));
+
+                for (var i = 0; i < countZ; i++) {
+                    var lineZ = startZ + interval * i;
+                    geometry.vertices.push(new THREE.Vector3(startX, 0, lineZ));
+                    geometry.vertices.push(new THREE.Vector3(startX, yLength, lineZ));
+                }
+
+                geometry.vertices.push(new THREE.Vector3(startX, 0, zLength));
+                geometry.vertices.push(new THREE.Vector3(startX, yLength, zLength));
+            }
+
+            return new THREE.Line(geometry, material, THREE.LinePieces);
+        }
+
+        function makeGrids() {
+            gridXY = makeGrid(0, 0, 0, boxX, boxY, 0, 10, 0x000066);
+            scene.add(gridXY);
+
+            gridXZ = makeGrid(0, boxY, 0, boxX, 0, boxZ, 10, 0x006600);
+            scene.add(gridXZ);
+
+            gridYZ = makeGrid(boxX, 0, 0, 0, boxY, boxZ, 10, 0x660000);
+            scene.add(gridYZ);
+        }
+
+        //Init functions
+
+        function updateCameraAssembly()
+        {
+            ringGeometry.vertices = new THREE.TorusGeometry(camDistance, 3, 8, 32).vertices;
+            ringGeometry.verticesNeedUpdate = true;
+            cameraPrism.position.set(camDistance, 0, 0);
+            camera2.position = new THREE.Vector3(camDistance, 0, 0);
+        }
+
+        function initCameraAssembly() {
+            rotObj = new THREE.Object3D();
+
+            //THREE.TorusGeometry( radius, tubeRadius, radialSegments, tubularSegments )
+            ringGeometry = new THREE.TorusGeometry(camDistance, 3, 8, 32);
+            ringGeometry.dynamic = true;
+            var material = new THREE.MeshLambertMaterial({ color: "red" });
+            ring1 = new THREE.Mesh(ringGeometry, material);
+            rotObj.add(ring1);
+
+            ring2 = ring1.clone();
+            ring2.rotation.x = Math.PI / 2;
+            ring2.material = new THREE.MeshLambertMaterial({ color: "blue" });
+            rotObj.add(ring2);
+
+            var triPoints = [];
+            triPoints.push(new THREE.Vector2(-10, -10));
+            triPoints.push(new THREE.Vector2(10, -10));
+            triPoints.push(new THREE.Vector2(10, 0));
+            triPoints.push(new THREE.Vector2(0, 10));
+            triPoints.push(new THREE.Vector2(-10, 0));
+            var triShape = new THREE.Shape(triPoints);
+            var extrusionSettings = {
+                bevelEnabled: false, amount: 10
+            };
+            var triGeometry = new THREE.ExtrudeGeometry(triShape, extrusionSettings);
+            material = new THREE.MeshNormalMaterial();
+            cameraPrism = new THREE.Mesh(triGeometry, material);
+            cameraPrism.rotation.y = -Math.PI / 2;
+            cameraPrism.position.set(camDistance, 0, 0);
+            rotObj.add(cameraPrism);
+
+            camera2.position = new THREE.Vector3(camDistance, 0, 0);
+            rotObj.add(camera2);
+            camera2.lookAt(new THREE.Vector3(0, 0, 0));
+
+            rotObj.position = new THREE.Vector3(boxX / 2, boxY / 2, 0);
+            //rotObj.rotation = new THREE.Vector3(0, 0, 0);
+            rotObj.rotateX(-Math.PI / 2);
+            rotObj.rotateY(-Math.PI / 4);
+            rotObj.rotateZ(-Math.PI / 4 * 3);
+
+            scene.add(rotObj);
+        }
+
+        function init()
+        {
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / 2 / window.innerHeight, 0.1, 1000);
+            camera2 = camera.clone();
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.autoClear = false;
+
+            // Create an event listener that resizes the renderer with the browser window.
+            window.addEventListener('resize', function () {
+                var WIDTH = window.innerWidth,
+                    HEIGHT = window.innerHeight;
+                renderer.setSize(WIDTH, HEIGHT);
+                camera.aspect = WIDTH / 2 / HEIGHT;
+                camera2.aspect = camera.aspect;
+                camera.updateProjectionMatrix();              
+                camera2.updateProjectionMatrix();
+            });
+
+            //document.body.appendChild(renderer.domElement);
+            document.getElementById("leftBlock").appendChild(renderer.domElement);
+
+            // Create a light, set its position, and add it to the scene.
+            var light = new THREE.PointLight(0xffffff);
+            light.position.set(-100, 100, 0);
+            scene.add(light);
+
+            camera.position = new THREE.Vector3(-300, -300, 300);
+            camera.up = new THREE.Vector3(0, 0, 1);
+            camera.lookAt(new THREE.Vector3(boxX / 2, boxY /2, 0));
+
+            //Make the cube
+            var geometry = new THREE.CubeGeometry(1, 1, 1);
+            var material = new THREE.MeshNormalMaterial();
+            var cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            //Make the grids
+            makeGrids();
+
+            initCameraAssembly();
+
+            render();
+        }
+
+        //Render function
+        var render = function () {
+            requestAnimationFrame(render);
+
+            var halfWidth = window.innerWidth / 2;
+            var heigth = window.innerHeight;
+            
+            renderer.setViewport(0, 0, window.innerWidth, heigth);
+            renderer.clear();
+
+            ring1.visible = true;
+            ring2.visible = true;
+            cameraPrism.visible = true;
+
+            // left side
+            renderer.setViewport(0, 0, halfWidth, heigth);
+            renderer.render(scene, camera);
+
+            ring1.visible = false;
+            ring2.visible = false;
+            cameraPrism.visible = false;
+
+            // right side
+            renderer.setViewport(halfWidth, 0, halfWidth, heigth);
+            renderer.render(scene, camera2);
+        };
+
+        //Get the viewer going
+        init();
+
+        //Triangle mesh creation functions
+
+        // Create a list to keep all the models in
+        var models = new Array();
+
+        var curGeometry, curIndex;
+
+        //This function makes ready for the definition of a new model
+        function newModel() {
+            curGeometry = new THREE.Geometry();
+            curIndex = 0;
+        }
+
+        //This function adds a new triangle to the current geometry
+        function addTriangle(v1x, v1y, v1z, v2x, v2y, v2z, v3x, v3y, v3z) {
+            curGeometry.vertices.push(new THREE.Vector3(v1x, v1y, v1z));
+            curGeometry.vertices.push(new THREE.Vector3(v2x, v2y, v2z));
+            curGeometry.vertices.push(new THREE.Vector3(v3x, v3y, v3z));
+
+            curGeometry.faces.push(new THREE.Face3(curIndex, curIndex + 1, curIndex + 2));
+
+            curIndex += 3;
+        }
+
+        //This method add the model currently being worked upon to the list and to the scene
+        function addModel(name) {
+            curGeometry.computeFaceNormals();
+            curGeometry.computeBoundingBox();
+
+            var min = curGeometry.boundingBox.min;
+            var max = curGeometry.boundingBox.max;
+            var avg = new THREE.Vector3();//vect3Avg(min, max);//new THREE.Vector3();
+
+            avg.add(min.divideScalar(2), max.divideScalar(2));
+
+            var model = new THREE.Mesh(curGeometry, new THREE.MeshNormalMaterial());
+
+            model.translateX(-avg.x + 50);
+            model.translateY(-avg.y + 100);
+            model.translateZ(-min.z);
+
+            models[name] = model;
+            rotSection.add(model);
+        }
+
+        //This function deletes the model at the specified index
+        function deleteModel(index) {
+            scene.remove(models[name]);
+            delete models[name]; //TODO: might leak memory...
+        }
+
+        //View Control functions
+
+        var defaultRotAmount = 0.05;
+        var minCamDist = 1;
+        var defaultPanAmount = 5;
+        var defaultZoomAmount = 0.05;
+
+        function rotateLeft(distance)
+        {
+            if (!distance && distance != 0)
+                distance = defaultRotAmount;
+
+            rotObj.rotateY(distance);
+        }
+
+        function rotateRight(distance)
+        {
+            if (!distance && distance != 0)
+                distance = defaultRotAmount;
+
+            rotObj.rotateY(-distance);
+        }
+
+        function rotateUp(distance)
+        {
+            if (!distance && distance != 0)
+                distance = defaultRotAmount;
+
+            rotObj.rotateZ(-distance);
+        }
+
+        function rotateDown(distance)
+        {
+            if (!distance && distance != 0)
+                distance = defaultRotAmount;
+
+            rotObj.rotateZ(distance);
+        }
+
+        //Zoom percentages are an amount out of 1
+
+        function zoomIn(percent)
+        {
+            if (!percent && percent != 0)
+                percent = defaultZoomAmount;
+
+            zoomScale(1 - percent);
+        }
+
+        function zoomOut(percent)
+        {
+            if (!percent && percent != 0)
+                percent = defaultZoomAmount;
+
+            zoomScale(1 + percent);
+        }
+
+        function zoomScale(scale)
+        {
+            if (!scale || (camDistance < 1 && scale < 1))
+                return;
+
+            camDistance *= scale;
+            updateCameraAssembly();
+        }
+
+        function pan(rightDist, downDist)
+        {
+            var camScale = camDistance / orgCamDistance;
+
+            rotObj.translateZ(rightDist * camScale * orgPanDistance);
+            rotObj.translateY(downDist * camScale * orgPanDistance);
+        }
+
+        function panLeft()
+        {
+            pan(-5, 0);
+        }
+
+        function panRight()
+        {
+            pan(5, 0);
+        }
+
+        function panUp()
+        {
+            pan(0, -5);
+        }
+
+        function panDown()
+        {
+            pan(0, 5)
+        }
+
+        //Functions to handle user input
+
+        function keyDown(event)
+        {
+            switch (event.key)
+            {
+                case 'w':
+                    rotateUp();
+                    break;
+                case 's':
+                    rotateDown();
+                    break;
+                case 'a':
+                    rotateLeft();
+                    break;
+                case 'd':
+                    rotateRight();
+                    break;
+                case '+':
+                    zoomIn();
+                    break;
+                case '-':
+                    zoomOut();
+                    break;
+                case "Right":
+                    panRight();
+                    break;
+                case "Left":
+                    panLeft();
+                    break;
+                case "Up":
+                    panUp();
+                    break;
+                case "Down":
+                    panDown();
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', keyDown, false);
+
+        var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5 };
+        var state = STATE.NONE;
+
+        var rotateStart = new THREE.Vector2();
+        var rotateEnd = new THREE.Vector2();
+        var rotateDelta = new THREE.Vector2();
+
+        var panStart = new THREE.Vector2();
+        var panEnd = new THREE.Vector2();
+        var panDelta = new THREE.Vector2();
+
+        var zoomStart = 0;
+        var zoomEnd = 0;
+        var zoomDelta = 0;
+
+        function touchstart(event) {
+            switch (event.touches.length) {
+
+                case 1:	// one-fingered touch: rotate
+                    state = STATE.TOUCH_ROTATE;
+
+                    rotateStart.set(event.touches[0].pageX, event.touches[0].pageY);
+                    break;
+
+                case 2:	// two-fingered touch: dolly
+                    state = STATE.TOUCH_ZOOM;
+
+                    var dx = event.touches[0].pageX - event.touches[1].pageX;
+                    var dy = event.touches[0].pageY - event.touches[1].pageY;
+                    zoomStart = Math.sqrt(dx * dx + dy * dy);
+                    break;
+
+                case 3: // three-fingered touch: pan
+                    state = STATE.TOUCH_PAN;
+
+                    panStart.set(event.touches[0].pageX, event.touches[0].pageY);
+                    break;
+
+                default:
+                    state = STATE.NONE;
+
+            }
+        }
+
+        function touchmove(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            //var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+
+            switch (event.touches.length) {
+
+                case 1: // one-fingered touch: rotate
+                    if (state !== STATE.TOUCH_ROTATE) { return; }
+
+                    rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY);
+                    rotateDelta.subVectors(rotateEnd, rotateStart);
+
+                    // rotating across whole screen goes 360 degrees around
+                    //scope.rotateLeft(2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed);
+                    // rotating up and down along whole screen attempts to go 360, but limited to 180
+                    //scope.rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed);
+
+                    //console.log(rotateDelta);
+                    rotateRight(rotateDelta.x / 100);
+                    rotateDown(rotateDelta.y / 100);
+
+                    rotateStart.copy(rotateEnd);
+                    break;
+
+                case 2: // two-fingered touch: zoom
+                    if (state !== STATE.TOUCH_ZOOM) { return; }
+
+                    var dx = event.touches[0].pageX - event.touches[1].pageX;
+                    var dy = event.touches[0].pageY - event.touches[1].pageY;
+                    zoomEnd = Math.sqrt(dx * dx + dy * dy);
+                    zoomDelta = zoomStart / zoomEnd;
+
+                    zoomScale(zoomDelta);
+
+                    zoomStart = zoomEnd;
+                    break;
+
+                case 3: // three-fingered touch: pan
+                    if (state !== STATE.TOUCH_PAN) { return; }
+
+                    panEnd.set(event.touches[0].pageX, event.touches[0].pageY);
+                    panDelta.subVectors(panEnd, panStart);
+
+                    pan(panDelta.x, panDelta.y);
+
+                    panStart.copy(panEnd);
+                    break;
+
+                default:
+                    state = STATE.NONE;
+
+            }
+
+        }
+
+        function touchend() {
+            state = STATE.NONE;
+        }
+
+        var hammertime = Hammer(renderer.domElement);
+        hammertime.on("touch", function (event) { touchstart(event.gesture); });
+        hammertime.on("release", function (event) { touchend(); });
+        hammertime.on("gesture", function (event) { touchmove(event.gesture); });
+    </script>
+</body>
+</html>
